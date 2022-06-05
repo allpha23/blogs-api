@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const userService = require('../services/userService');
+const loginService = require('../services/loginService');
 const jwtGenerator = require('../helpers/jwtGenerator');
 const validation = require('../middlewares/loginValidation');
 
 router.post('/', validation, async (req, res) => {
   const { email, password } = req.body;
     
-  const findUser = await userService.getAll(email, password);
+  const findUser = await loginService.getAll(email, password);
     
   if (findUser.length === 0) {
     return res.status(400).json({ message: 'Invalid fields' });
