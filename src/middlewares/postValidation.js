@@ -1,21 +1,22 @@
 module.exports = (req, res, next) => {
   const { title, content, categoryIds } = req.body;
+  const message = 'Some required fields are missing';
     
-  if (title === undefined) {
+  if (title === '') {
     return res.status(400).json({ 
-      message: '"title" is required',
+      message,
     });
   }
   
-  if (content === undefined) {
+  if (content === '') {
     return res.status(400).json({ 
-      message: '"content" is required',
+      message,
     });
   }
   
-  if (categoryIds === undefined) {
+  if (categoryIds === []) {
     return res.status(400).json({ 
-      message: '"categoryIds" is required',
+      message,
     });
   }
       
