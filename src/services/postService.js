@@ -1,17 +1,23 @@
-const { Category, BlogPost } = require('../database/models');
+const { Category, BlogPost, PostCategory } = require('../database/models');
 
 const getAll = async (categoryIds) => {
   const response = await Category.findAll({ where: {
     id: categoryIds,
   } });
 
-  return response; 
+  const ids = response.map((category) => category.id);
+
+  return ids;
 };
 
-const create = async (title, content) => {
-  const response = await BlogPost.create({ userId: 1, title, content });
+const create = async (id, title, content, findCategory) => {
+  const post = await BlogPost.create({ userId: id, title, content });
 
-  return response; 
+  await PostCategory.bulkCreate(findCategory.map((categoryId) => (
+    ({ postId: post.id, categoryId })
+  )));
+
+  return post; 
 };
 
 module.exports = { getAll, create };
