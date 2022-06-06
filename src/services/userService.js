@@ -22,7 +22,7 @@ const findByEmail = async (email) => {
 
 const create = async (displayName, email, password, image) => {
   const response = await User.create({ displayName, email, password, image });
-  console.log(response);
+
   return response; 
 };
 

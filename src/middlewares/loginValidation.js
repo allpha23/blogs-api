@@ -9,7 +9,7 @@ const validatePassword = (req, res, next) => {
     
   if (password.length === 0) {
     return res.status(400).json({ 
-      message: '"password" is not allowed to be empty',
+      message: 'Some required fields are missing',
     });
   }
       
@@ -27,7 +27,7 @@ const validateEmail = (req, res, next) => {
       
   if (email.length === 0) {
     return res.status(400).json({ 
-      message: '"email" is not allowed to be empty',
+      message: 'Some required fields are missing',
     });
   }
         
